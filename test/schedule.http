@@ -1,0 +1,18 @@
+GET http://localhost:3000/api/v1/schedule HTTP/1.1
+Content-Type: application/json
+
+###
+
+POST http://localhost:3000/api/v1/schedule HTTP/1.1
+content-type: application/json
+
+{
+    "title": "test every 3 menit",
+    "note": "",
+    "repeat": "i",
+    "event_at": "",
+    "cron": "*/3 * * * *",
+    "sound": "audio3",
+    "speak": 0,
+    "status": 1
+}

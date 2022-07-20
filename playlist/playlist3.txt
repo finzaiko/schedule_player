@@ -1,0 +1,3 @@
+/home/fin/Projects/zpersonal/schedule_player/audio/cute.mp3
+/home/fin/Projects/zpersonal/schedule_player/audio/ukulele.mp3/home/fin/Projects/zpersonal/schedule_player/audio/hey.mp3
+/home/fin/Projects/zpersonal/schedule_player/audio/jazzyfrenchy.mp3
