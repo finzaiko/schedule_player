@@ -89,7 +89,7 @@ class ScheduleService {
           " -- " +
           new Date().toLocaleTimeString()
       );
-      playSound2(job.sound_path, job.sound, job.sound_repeat);
+      playSound(job.sound_path, job.sound, job.sound_repeat);
       if (job.repeat == "x") {
         console.log("canceld-create-->", job.id);
 
