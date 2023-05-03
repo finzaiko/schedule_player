@@ -3,9 +3,12 @@
 Tiny Smart Home Alarm schedule for Raspberry Pi
 
 ### Installation
-1. Install `sudo apt install mpg123`
+1. Install mpg123
+    ```
+    sudo apt install mpg123
+    ```
 
-2. Create config file
+2. Create config file (copy from sample)
     ```
     cd src/config
     cp constant.sample.js constant.js
@@ -18,9 +21,9 @@ Tiny Smart Home Alarm schedule for Raspberry Pi
     ```
 
 3. Install node modules
-```
-npm i && cd app && npm i
-```
+    ```
+    npm i && cd app && npm i
+    ```
 
 4. Run
 
