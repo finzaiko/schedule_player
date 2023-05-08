@@ -1,6 +1,7 @@
 const PlayerController = require("../../controllers/player.controller");
 const multer = require("fastify-multer");
 const { AUDIO_MAX_SIZE, AUDIO_PATH } = require("../../config/contant");
+const sysPath = require("path");
 
 const audioFilter = function (req, file, cb) {
   if (!file.originalname.match(/\.(mp3|wav)$/)) {
@@ -15,7 +16,8 @@ const limitsUpload = {
   files: 1,
 };
 const upload = multer({
-  dest: AUDIO_PATH + "/",
+  fileFilter: sysPath.join(__dirname, "../../" + AUDIO_PATH),
+  // dest: AUDIO_PATH + "/",
   fileFilter: audioFilter,
   limits: limitsUpload,
 });

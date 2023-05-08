@@ -1,5 +1,6 @@
 const shell = require("shelljs");
 const { PLAYLIST_PATH } = require("../config/contant");
+const sysPath = require("path");
 
 const playSound = (path, sound, loopTimes = 1) => {
   const cmdMpg123 = `mpg123 --loop ${loopTimes} ${path}/${sound}`;
@@ -21,8 +22,9 @@ const playSound = (path, sound, loopTimes = 1) => {
 };
 
 const playListSound = (playlist) => {
+  const playlistPath = sysPath.join(__dirname, "../../" + PLAYLIST_PATH);
   let audio = shell.exec(
-    `mpg123 --quiet --listentry 0 --list ${PLAYLIST_PATH}/${playlist}`,
+    `mpg123 --quiet --listentry 0 --list ${playlistPath}/${playlist}`,
     { async: true },
     (code) => {
       return code;

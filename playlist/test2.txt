@@ -1,3 +1,0 @@
-/home/fin/Projects/zpersonal/schedule_player/audio/hey.mp3
-/home/fin/Projects/zpersonal/schedule_player/audio/tenderness.mp3
-/home/fin/Projects/zpersonal/schedule_player/audio/littleidea.mp3

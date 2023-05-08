@@ -1,9 +1,9 @@
 const SOCKET_PREFIX = "zko";
-const AUDIO_PATH = "/path/audio";
-const PLAYLIST_PATH = "/path/playlist";
+const AUDIO_PATH = "audio";
+const PLAYLIST_PATH = "playlist";
 const AUDIO_MAX_SIZE = 10 * 1048576; //15MB 15*1048576;
 
-const ALLOW_ORIGIN = `http://localhost:8080`;
+const ALLOW_ORIGIN = `*`;
 
 module.exports = {
   SOCKET_PREFIX,

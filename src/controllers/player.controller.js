@@ -1,5 +1,6 @@
 const PlayerService = require(`../services/player.service`);
 const fs = require("fs");
+const sysPath = require("path");
 
 const { readPlaylistFile, readFilesSync } = require("../utils/files.util");
 const { PLAYLIST_PATH, AUDIO_PATH } = require("../config/contant");
@@ -28,7 +29,10 @@ class PlayerController {
     console.log("type", type);
     let cPath = "";
     if (type == "p" && typeof path == "undefined") {
-      cPath = PLAYLIST_PATH;
+      const playlistPath = sysPath.join(__dirname, "../../" + PLAYLIST_PATH);
+      console.log("playlistPath", playlistPath);
+
+      cPath = playlistPath;
     } else {
       cPath = path;
     }
@@ -77,8 +81,8 @@ class PlayerController {
       // console.log('pathUpload>>>>>>>>>>>>>>',pathUpload);
 
       const oriName = request.file.originalname;
-      var newResult = oriName.substring(0, oriName.lastIndexOf("."));
-      var newName = newResult.replace(/[^A-Z0-9]/gi, "_");
+      let newResult = oriName.substring(0, oriName.lastIndexOf("."));
+      let newName = newResult.replace(/[^A-Z0-9]/gi, "_");
 
       fs.renameSync(
         request.file.path,
@@ -93,15 +97,24 @@ class PlayerController {
   }
 
   async playlistAdd(request, reply) {
-    const { playlist, path, file } = request.body;
+    const { playlist, path, file, checked } = request.body;
 
-    fs.open(`${PLAYLIST_PATH}/${playlist}.txt`, "a", function (e, id) {
-      fs.write(id, `${path}/${file}` + "\r\n", null, "utf8", function () {
-        fs.close(id, function () {
-          console.log("file is updated");
-        });
-      });
-    });
+    if (typeof checked == "undefined" || checked == false) {
+      const plName = playlist.toLowerCase().replace(/[^A-Z0-9]/gi, "_");
+      fs.open(
+        `${PLAYLIST_PATH}/${plName}.txt`,
+        "a",
+        function (e, id) {
+          fs.write(id, `${path}/${file}` + "\r\n", null, "utf8", function () {
+            fs.close(id, function () {
+              console.log("file is updated");
+            });
+          });
+        }
+      );
+    } else {
+      console.log("LOG: not implement yet!\nTODO: Delete playlist");
+    }
 
     return reply
       .code(201)
@@ -111,16 +124,16 @@ class PlayerController {
 
   async playlistDetail(request, reply) {
     const { file, checked } = request.query;
-
-    let audio = readFilesSync(AUDIO_PATH);
+    let audioPath = sysPath.join(__dirname, "../../" + AUDIO_PATH);
+    let audio = readFilesSync(audioPath);
 
     if (file) {
       const playlist = await readPlaylistFile(PLAYLIST_PATH, `${file}.txt`);
-      var playlistMark = playlist.map((obj) => {
+      let playlistMark = playlist.map((obj) => {
         return Object.assign(obj, { checked: true });
       });
 
-      var leftUsers = audio.filter(
+      let leftUsers = audio.filter(
         (u) => playlistMark.findIndex((lu) => lu.file === u.file) === -1
       );
 
@@ -145,13 +158,16 @@ class PlayerController {
   }
 
   async getFiles(request, reply) {
-    const sound = readFilesSync(AUDIO_PATH);
+    const audioPath = sysPath.join(__dirname, "../../" + AUDIO_PATH);
+    const playlistPath = sysPath.join(__dirname, "../../" + PLAYLIST_PATH);
+
+    const sound = readFilesSync(audioPath);
 
     const s = sound.map((obj) => {
       return { id: obj.file, value: obj.file, path: obj.path, type: "s" };
     });
 
-    const playlist = readFilesSync(PLAYLIST_PATH);
+    const playlist = readFilesSync(playlistPath);
 
     const p = playlist.map((obj) => {
       return { id: obj.file, value: obj.file, path: obj.path, type: "p" };
@@ -166,7 +182,7 @@ class PlayerController {
   }
 
   async getPlaylistFiles(reply) {
-    const files = readFilesSync(PLAYLIST_PATH);
+    const files = readFilesSync(playlistPath);
     reply
       .code(200)
       .header(`Content-Type`, `application/json; charset=utf-8`)

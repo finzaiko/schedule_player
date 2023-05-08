@@ -50,5 +50,5 @@ Thumbs.db
 
 audio/*
 !audio/beep*
-
-src/config/contant.js
+public/assets/*
+package-lock.json

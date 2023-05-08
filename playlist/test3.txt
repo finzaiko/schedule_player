@@ -1,4 +1,0 @@
-/home/fin/Projects/zpersonal/schedule_player/audio/beep2.mp3
-/home/fin/Projects/zpersonal/schedule_player/audio/beep3.mp3
-/home/fin/Projects/zpersonal/schedule_player/audio/littleidea.mp3
-/home/fin/Projects/zpersonal/schedule_player/audio/ukulele.mp3

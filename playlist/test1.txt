@@ -1,3 +1,2 @@
-/home/fin/Projects/zpersonal/schedule_player/audio/beep1.mp3
-/home/fin/Projects/zpersonal/schedule_player/audio/beep2.mp3
-/home/fin/Projects/zpersonal/schedule_player/audio/beep3.mp3
+/home/arifin/Projects/github/schedule_player/audio/beep1.mp3
+/home/arifin/Projects/github/schedule_player/audio/beep2.mp3

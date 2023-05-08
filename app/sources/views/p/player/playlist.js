@@ -99,7 +99,7 @@ function openPlaylistDetail(playlistFile) {
                       .then((r) => {
                         console.log("r", r);
                         $$("play_list").clearAll();
-                        $$("play_list").load(`${url}/playlist_sound`);
+                        $$("play_list").load(`${url}/playlist`);
                         $$("win3").close();
                         // setTimeout(() => {
                         // }, 800);
@@ -197,6 +197,7 @@ function openPlaylistDetail(playlistFile) {
                     playlist: $$("playlist_name").getValue(),
                     path: item.path,
                     file: item.file,
+                    checked: item.checked
                   };
                   webix
                     .ajax()

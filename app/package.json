@@ -7,6 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint sources/",
     "build": "webpack --env production",
+    "build-test": "webpack --env.production true",
+    "build-live": "webpack --env production --env server_url http://$(hostname  -I | cut -f1 -d' ')",
     "module": "webpack --env production --env module",
     "standalone": "webpack --env production --env module --env standalone",
     "start": "webpack-dev-server --open"
@@ -35,7 +37,9 @@
     "webpack-dev-server": "^4.4.0"
   },
   "dependencies": {
+    "@mdi/font": "^7.2.96",
     "socket.io-client": "^4.4.0",
+    "webix": "^10.0.1",
     "webix-jet": "^2.1.3"
   }
 }

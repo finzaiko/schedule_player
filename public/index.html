@@ -1,24 +1,20 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <title>FastifySocketIO</title>
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-      var socket = io();
-      console.log(`socket`, socket);
-      socket.on("hello", function (data) {
-        console.log(`data`, data)
-      });
+<head>
+	<meta charset="utf-8">
+	<title>Schedule Player</title>
+	<!-- Webix Library -->
+  <script type="text/javascript" src="assets/webix/webix.js"></script>
+	<link rel="stylesheet" type="text/css" href="assets/webix/webix.css">
 
-      socket.emit("joined", "nama-aja-test");
-      socket.on("joined", function (data) {
-        console.log('data',data);
-      })
-      
-    </script>
-  </head>
-  <body>
-    Hello..
-  </body>
+  <!-- App -->
+	<script type="text/javascript" src="assets/myapp.js"></script>
+	<link rel="stylesheet" type="text/css" href="assets/myapp.css">
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="assets/@mdi/font/css/materialdesignicons.css"
+  />
+</head>
+<body></body>
 </html>
