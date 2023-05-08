@@ -22,3 +22,23 @@ Tiny Smart Home Alarm schedule for Raspberry Pi
     ```
 
 4. Open in browser `http://<IP_ADDRESS>:3000`
+
+
+### Deploy Live Server
+
+Install pm2
+```
+sudo i -g pm2
+```
+
+Start pm2
+```
+pm2 start --name schedule_player index.js
+```
+
+Monitor process
+```
+pm2 monit
+```
+
+more about [pm2](https://pm2.keymetrics.io/docs/usage/quick-start/)
