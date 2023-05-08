@@ -1,2 +1,0 @@
-/home/arifin/Projects/github/schedule_player/audio/beep1.mp3
-/home/arifin/Projects/github/schedule_player/audio/beep2.mp3
