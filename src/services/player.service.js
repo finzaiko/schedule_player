@@ -5,7 +5,7 @@ class PlayerService {
     if (type == "s") {
       return playSound(path, file, loopTimes);
     } else {
-      return playListSound(file);
+      return playListSound(file, loopTimes);
     }
   }
 

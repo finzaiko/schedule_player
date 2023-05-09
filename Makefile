@@ -3,6 +3,8 @@ install:
 	cd app && npm i
 	cd app && npm run build
 	mkdir public/assets
+	mkdir audio
+	mkdir playlist
 	cp app/codebase/* public/assets/
 	cp -R app/node_modules/webix public/assets/
 	cp -R app/node_modules/@mdi public/assets/

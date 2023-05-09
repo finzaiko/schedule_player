@@ -21,10 +21,10 @@ const playSound = (path, sound, loopTimes = 1) => {
   return audio;
 };
 
-const playListSound = (playlist) => {
+const playListSound = (playlist, loopTimes=1) => {
   const playlistPath = sysPath.join(__dirname, "../../" + PLAYLIST_PATH);
   let audio = shell.exec(
-    `mpg123 --quiet --listentry 0 --list ${playlistPath}/${playlist}`,
+    `mpg123 --quiet --listentry 0 --loop ${loopTimes} --list ${playlistPath}/${playlist}`,
     { async: true },
     (code) => {
       return code;
