@@ -4,20 +4,23 @@ const { AUDIO_MAX_SIZE, AUDIO_PATH } = require("../../config/contant");
 const sysPath = require("path");
 
 const audioFilter = function (req, file, cb) {
-  if (!file.originalname.match(/\.(mp3|wav)$/)) {
+  console.log('file////////////////////',file);
+
+  if (!file.originalname.match(/\.(mp3|MP3|wav|WAV)$/)) {
     req.fileValidationError = "Only mp3/wav files are allowed!";
     return cb(new Error("Only mp3/wav files are allowed!"), false);
   }
   cb(null, true);
 };
 
+const audioPath = sysPath.join(__dirname, "../../../" + AUDIO_PATH);
+
 const limitsUpload = {
   fileSize: AUDIO_MAX_SIZE, //15MB 15*1048576
   files: 1,
 };
 const upload = multer({
-  fileFilter: sysPath.join(__dirname, "../../" + AUDIO_PATH),
-  // dest: AUDIO_PATH + "/",
+  dest: audioPath,
   fileFilter: audioFilter,
   limits: limitsUpload,
 });

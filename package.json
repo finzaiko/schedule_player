@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "./node_modules/nodemon/bin/nodemon.js ./index.js",
     "dev": "concurrently \"npm start\" \"cd app && npm start\" ",
+    "build": "webpack --env.production true",
     "killport": "npx kill-port 3000"
   },
   "keywords": [],

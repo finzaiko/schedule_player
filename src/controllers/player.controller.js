@@ -8,7 +8,6 @@ const { PLAYLIST_PATH, AUDIO_PATH } = require("../config/contant");
 class PlayerController {
   async play(request, reply) {
     const { path, file, loop, type } = request.body;
-    console.log("type", type);
     this.audioMpg123 = await PlayerService.play(type, path, file, loop);
     reply
       .code(201)
@@ -76,17 +75,15 @@ class PlayerController {
   }
 
   async soundAdd(request, reply) {
-    if (request.file) {
-      // const pathUpload = path.join(__dirname, "../../uploads/");
-      // console.log('pathUpload>>>>>>>>>>>>>>',pathUpload);
+    console.log('request/////////////',request.file);
 
+    if (request.file) {
       const oriName = request.file.originalname;
       let newResult = oriName.substring(0, oriName.lastIndexOf("."));
       let newName = newResult.replace(/[^A-Z0-9]/gi, "_");
-
       fs.renameSync(
         request.file.path,
-        request.file.destination + `${newName}.mp3`
+        request.file.destination + `/${newName}.mp3`
       );
     }
 

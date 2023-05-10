@@ -1,3 +1,4 @@
-TODO
+## TODO
 --------------------
-[] - Remove playlist item
+- [ ] - Remove playlist item
+- [x] - Playlist repeat
