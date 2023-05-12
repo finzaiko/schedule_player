@@ -28,12 +28,22 @@ Tiny Smart Home Alarm schedule for Raspberry Pi
 
 Install pm2
 ```
-sudo i -g pm2
+sudo npm i -g pm2
 ```
 
 Start pm2
 ```
 pm2 start --name schedule_player index.js
+or
+pm2 start npm --name "schedule_player" -- start
+```
+
+Register Startup on boot
+```
+pm2 start --name schedule_player index.js
+pm2 save
+pm2 startup
+<Copy paste script result and run again>
 ```
 
 Monitor process
