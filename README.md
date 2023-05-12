@@ -3,9 +3,10 @@
 Tiny Smart Home Alarm schedule for Raspberry Pi
 
 ### Installation
-1. Install mpg123
+1. Install mpg123 and pulseaudio
     ```
     sudo apt install mpg123
+    sudo apt install pulseaudio
     ```
 
 2. Install node modules and setup

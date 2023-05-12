@@ -65,6 +65,15 @@ const mToolbar = {
     },
     {
       view: "icon",
+      icon: "mdi mdi-volume-high",
+      css: "stop_sound",
+      tooltip: "Volume Control",
+      click: function () {
+        showVolumeControl();
+      },
+    },
+    {
+      view: "icon",
       icon: "mdi mdi-stop",
       css: "stop_sound",
       tooltip: "Stop all sound",
@@ -99,6 +108,60 @@ const list = {
   },
 };
 
+function showVolumeControl() {
+  webix
+    .ui({
+      view: "window",
+      width: 45,
+      head: false,
+      modal: true,
+      position: "center",
+      body: {
+        rows: [
+          {
+            view: "button",
+            type: "icon",
+            height: 70,
+            icon: "mdi mdi-volume-plus",
+            tooltip: "Volume Increase",
+            click: function () {
+              webix.ajax().headers(defaultHeader()).get(`${url}/volume_up`);
+            },
+          },
+          {
+            view: "button",
+            type: "icon",
+            height: 70,
+            icon: "mdi mdi-volume-minus",
+            tooltip: "Volume Decrease",
+            click: function () {
+              webix.ajax().headers(defaultHeader()).get(`${url}/volume_down`);
+            },
+          },
+          {
+            view: "button",
+            type: "icon",
+            height: 70,
+            tooltip: "Volume Mute Toggle",
+            icon: "mdi mdi-volume-variant-off",
+            click: function () {
+              webix.ajax().headers(defaultHeader()).get(`${url}/volume_mute_toggle`);
+            },
+          },
+          {
+            view: "button",
+            type: "icon",
+            height: 50,
+            icon: "mdi mdi-close",
+            click: function () {
+              this.getParentView().getParentView().close();
+            },
+          },
+        ],
+      },
+    })
+    .show();
+}
 function openPlay(path, file, type) {
   return webix.ui({
     view: "window",

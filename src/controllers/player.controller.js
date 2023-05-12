@@ -75,7 +75,7 @@ class PlayerController {
   }
 
   async soundAdd(request, reply) {
-    console.log('request/////////////',request.file);
+    console.log("request/////////////", request.file);
 
     if (request.file) {
       const oriName = request.file.originalname;
@@ -98,17 +98,13 @@ class PlayerController {
 
     if (typeof checked == "undefined" || checked == false) {
       const plName = playlist.toLowerCase().replace(/[^A-Z0-9]/gi, "_");
-      fs.open(
-        `${PLAYLIST_PATH}/${plName}.txt`,
-        "a",
-        function (e, id) {
-          fs.write(id, `${path}/${file}` + "\r\n", null, "utf8", function () {
-            fs.close(id, function () {
-              console.log("file is updated");
-            });
+      fs.open(`${PLAYLIST_PATH}/${plName}.txt`, "a", function (e, id) {
+        fs.write(id, `${path}/${file}` + "\r\n", null, "utf8", function () {
+          fs.close(id, function () {
+            console.log("file is updated");
           });
-        }
-      );
+        });
+      });
     } else {
       console.log("LOG: not implement yet!\nTODO: Delete playlist");
     }
@@ -184,6 +180,30 @@ class PlayerController {
       .code(200)
       .header(`Content-Type`, `application/json; charset=utf-8`)
       .send(files);
+  }
+
+  async volumeUp(request, reply) {
+    this.mAudio = await PlayerService.volumeUpDown("+");
+    reply
+      .code(200)
+      .header(`Content-Type`, `application/json; charset=utf-8`)
+      .send("Volume UP");
+  }
+
+  async volumeDown(request, reply) {
+    this.mAudio = await PlayerService.volumeUpDown("-");
+    reply
+      .code(200)
+      .header(`Content-Type`, `application/json; charset=utf-8`)
+      .send("Volume DOWN");
+  }
+
+  async volumeMuteToggle(request, reply) {
+    this.mAudio = await PlayerService.volumeMuteToggle();
+    reply
+      .code(200)
+      .header(`Content-Type`, `application/json; charset=utf-8`)
+      .send("Volume MUTE TOGGLE");
   }
 }
 

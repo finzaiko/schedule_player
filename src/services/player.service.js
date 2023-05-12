@@ -1,4 +1,4 @@
-const { playSound, playListSound, mpgStopAll } = require("../utils/sound.util");
+const { playSound, playListSound, mpgStopAll, volumeUpDown, volumeMuteToggle } = require("../utils/sound.util");
 
 class PlayerService {
   async play(type, path, file, loopTimes) {
@@ -15,6 +15,18 @@ class PlayerService {
 
   async mpgStopAll() {
     return mpgStopAll();
+  }
+
+  async volumeUpDown(upDown) {
+    return volumeUpDown(upDown);
+  }
+
+  async volumeUpDown(upDown) {
+    return volumeUpDown(upDown);
+  }
+
+  async volumeMuteToggle(upDown) {
+    return volumeMuteToggle(upDown);
   }
 
 }

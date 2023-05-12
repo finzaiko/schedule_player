@@ -35,6 +35,9 @@ module.exports = async (fastify) => {
   fastify.get(`/playlist_sound`, PlayerController.getFiles);
   fastify.get(`/playlist_detail`, PlayerController.playlistDetail);
   fastify.post(`/playlist_add`, PlayerController.playlistAdd);
+  fastify.get(`/volume_up`, PlayerController.volumeUp);
+  fastify.get(`/volume_down`, PlayerController.volumeDown);
+  fastify.get(`/volume_mute_toggle`, PlayerController.volumeMuteToggle);
   fastify.post(
     `/addsound`,
     { preHandler: upload.single("upload") },

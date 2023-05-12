@@ -38,8 +38,22 @@ const mpgStopAll = () => {
   return shell.exec("pkill mpg123", { silent: true }).output;
 };
 
+const volumeUpDown = (upDown="+") => {
+  return shell.exec(`pactl -- set-sink-volume 0 ${upDown}10%`, { silent: true }).output;
+};
+
+const volumeMuteToggle = () => {
+  /*
+  MUTE= pactl set-sink-mute @DEFAULT_SINK@ true
+  UNMUTE= pactl set-sink-mute @DEFAULT_SINK@ false
+  */
+  return shell.exec("pactl set-sink-mute @DEFAULT_SINK@ toggle", { silent: true }).output;
+};
+
 module.exports = {
   playSound,
   playListSound,
   mpgStopAll,
+  volumeUpDown,
+  volumeMuteToggle,
 };
